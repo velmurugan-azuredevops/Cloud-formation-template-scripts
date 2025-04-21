@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: This Yaml file will create Ec2 instance using CFT
+Resources:
+  MyEc2instance:
+    Type : AWS::EC2::Instance
+    Properties:
+      ImageId: ami-084568db4383264d4
+      InstanceType: t2.micro
+      KeyName: aws-login
+      NetworkInterfaces:
+      - GroupSet:
+        - Ref: networkconfig
+        SubnetId: subnet-07d9c5363406088ab
+        AssociatePublicIpAddress: true
+        DeviceIndex: '0'
+        DeleteOnTermination: true
+      
+
+  networkconfig:
+    Type : AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: enable ssh 
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          Description: Allow SSH access via port 22 from anywhere
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+      VpcId: vpc-0c11421a454490f2d
+      

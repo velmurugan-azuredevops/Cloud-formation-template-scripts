@@ -1,0 +1,18 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: creating S3 bucket using CFT
+Transform : s3objects
+Resources:
+  MyS3Bucket:
+    Type : AWS::S3::Bucket
+    Properties:
+      BucketName: vel2.new.bucket.com
+      VersioningConfiguration:
+        Status: Enabled
+
+  MyS3Bucket1:
+    Type : AWS::S3::Bucket
+    Properties:
+      BucketName: vel3.new.bucket.com
+      VersioningConfiguration:
+        Status: Enabled        
+  
